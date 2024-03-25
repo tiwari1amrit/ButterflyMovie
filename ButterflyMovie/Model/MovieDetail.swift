@@ -24,9 +24,9 @@ struct MovieDetail: Codable, Identifiable {
     var voteCount: Int?
     var popularity: Double?
     
-    private var releaseDate: String?
-    private var backdropPath: String?
-    private var posterPath: String?
+    var releaseDate: String?
+    var backdropPath: String?
+    var posterPath: String?
     
     init(id: Int, title: String, overview: String, voteCount: Int? = nil, popularity: Double? = nil, releaseDate: String? = nil, backdropPath: String? = nil, posterPath: String? = nil) {
         self.id = id

@@ -36,7 +36,9 @@ struct MovieDetailView: View {
 
 
 #Preview {
-    MovieDetailView(movieDetail: MovieDetail(id: 1, title: "Hello", overview: ""))
+    NavigationStack{
+        MovieDetailView(movieDetail: MovieDetail(id: 1, title: "Hello", overview: ""))
+    }
 }
 
 struct PosterView: View {

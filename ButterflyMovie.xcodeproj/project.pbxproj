@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		661A583C2BB169D800272C6B /* ButterflyMovieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661A583B2BB169D800272C6B /* ButterflyMovieApp.swift */; };
-		661A583E2BB169D800272C6B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661A583D2BB169D800272C6B /* Persistence.swift */; };
+		661A583E2BB169D800272C6B /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661A583D2BB169D800272C6B /* PersistenceController.swift */; };
 		661A58412BB169D800272C6B /* ButterflyMovie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 661A583F2BB169D800272C6B /* ButterflyMovie.xcdatamodeld */; };
 		661A58452BB169D800272C6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 661A58442BB169D800272C6B /* Assets.xcassets */; };
 		661A58492BB169D800272C6B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 661A58482BB169D800272C6B /* Preview Assets.xcassets */; };
@@ -31,6 +31,9 @@
 		661A58952BB174B300272C6B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661A58942BB174B300272C6B /* Constant.swift */; };
 		661A58972BB174DD00272C6B /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661A58962BB174DD00272C6B /* SearchBarView.swift */; };
 		661A58992BB1763D00272C6B /* MovieFavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661A58982BB1763D00272C6B /* MovieFavoriteView.swift */; };
+		661A58B42BB1813500272C6B /* MovieDetailDB+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661A58B22BB1813500272C6B /* MovieDetailDB+CoreDataClass.swift */; };
+		661A58B52BB1813500272C6B /* MovieDetailDB+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661A58B32BB1813500272C6B /* MovieDetailDB+CoreDataProperties.swift */; };
+		6673AD7C2BB21D92001B11A4 /* MovieDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6673AD7B2BB21D92001B11A4 /* MovieDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +56,7 @@
 /* Begin PBXFileReference section */
 		661A58382BB169D800272C6B /* ButterflyMovie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ButterflyMovie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		661A583B2BB169D800272C6B /* ButterflyMovieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButterflyMovieApp.swift; sourceTree = "<group>"; };
-		661A583D2BB169D800272C6B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		661A583D2BB169D800272C6B /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		661A58402BB169D800272C6B /* ButterflyMovie.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ButterflyMovie.xcdatamodel; sourceTree = "<group>"; };
 		661A58442BB169D800272C6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		661A58462BB169D800272C6B /* ButterflyMovie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ButterflyMovie.entitlements; sourceTree = "<group>"; };
@@ -78,6 +81,9 @@
 		661A58942BB174B300272C6B /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		661A58962BB174DD00272C6B /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		661A58982BB1763D00272C6B /* MovieFavoriteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieFavoriteView.swift; sourceTree = "<group>"; };
+		661A58B22BB1813500272C6B /* MovieDetailDB+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDetailDB+CoreDataClass.swift"; sourceTree = "<group>"; };
+		661A58B32BB1813500272C6B /* MovieDetailDB+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDetailDB+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6673AD7B2BB21D92001B11A4 /* MovieDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +140,7 @@
 				661A586D2BB16AB800272C6B /* ViewModel */,
 				661A586E2BB16ABE00272C6B /* Helper */,
 				661A583B2BB169D800272C6B /* ButterflyMovieApp.swift */,
-				661A583D2BB169D800272C6B /* Persistence.swift */,
+				661A583D2BB169D800272C6B /* PersistenceController.swift */,
 				661A58942BB174B300272C6B /* Constant.swift */,
 				661A58442BB169D800272C6B /* Assets.xcassets */,
 				661A58462BB169D800272C6B /* ButterflyMovie.entitlements */,
@@ -187,6 +193,8 @@
 		661A586C2BB16AB000272C6B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				661A58B22BB1813500272C6B /* MovieDetailDB+CoreDataClass.swift */,
+				661A58B32BB1813500272C6B /* MovieDetailDB+CoreDataProperties.swift */,
 				661A58882BB1722C00272C6B /* MovieDetail.swift */,
 			);
 			path = Model;
@@ -206,6 +214,7 @@
 				661A58762BB16F8600272C6B /* Library */,
 				661A58712BB16F5000272C6B /* Network */,
 				661A586F2BB16F2C00272C6B /* ErrorMessage.swift */,
+				6673AD7B2BB21D92001B11A4 /* MovieDataManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -377,8 +386,11 @@
 				661A58972BB174DD00272C6B /* SearchBarView.swift in Sources */,
 				661A58752BB16F5A00272C6B /* NetworkManager.swift in Sources */,
 				661A588B2BB1729600272C6B /* MovieView.swift in Sources */,
-				661A583E2BB169D800272C6B /* Persistence.swift in Sources */,
+				661A583E2BB169D800272C6B /* PersistenceController.swift in Sources */,
+				661A58B42BB1813500272C6B /* MovieDetailDB+CoreDataClass.swift in Sources */,
+				661A58B52BB1813500272C6B /* MovieDetailDB+CoreDataProperties.swift in Sources */,
 				661A588F2BB1737700272C6B /* MovieSearchVM.swift in Sources */,
+				6673AD7C2BB21D92001B11A4 /* MovieDataManager.swift in Sources */,
 				661A58782BB16F9600272C6B /* Reachability.swift in Sources */,
 				661A58742BB16F5A00272C6B /* Url+Extension.swift in Sources */,
 			);
@@ -554,7 +566,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.3;
@@ -592,7 +604,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.3;

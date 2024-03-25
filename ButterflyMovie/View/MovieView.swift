@@ -21,7 +21,7 @@ struct MovieView: View {
                 
                 VStack(alignment: .leading, spacing: 0){
                     Text(movieDetail.title)
-                        .font(.system(size: 13))
+                        .font(.title2)
                         .padding(.bottom, 3)
                         .lineLimit(3)
                     Text(movieDetail.releaseDateReadbale ?? "")
@@ -30,7 +30,16 @@ struct MovieView: View {
                 .padding(EdgeInsets(top: 5, leading: 10, bottom: 0, trailing: 0))
                 Spacer()
             }
-            
+            .overlay(alignment: .topTrailing) {
+                Button {
+                    
+                } label: {
+                    Image(systemName: "star")
+                        .font(.title3)
+                        .symbolVariant(.fill)
+                        .foregroundColor(.gray.opacity(0.4))
+                }
+            }
         }
     }
 }

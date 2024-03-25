@@ -36,8 +36,9 @@ struct ButterflyMovieApp: App {
                     .tag(1)
             }
             .accentColor(.red)
+            .environment(
+                \.managedObjectContext, PersistenceController.shared.viewContext)
             
-            //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

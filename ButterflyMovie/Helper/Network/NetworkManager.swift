@@ -73,30 +73,33 @@ class NetworkManager {
             errors(error)
         }
         
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            DispatchQueue.main.async {
-                
-                if let error = error {
-                    errors(error.localizedDescription)
-                    return
+        DispatchQueue.global(qos: .background).async {
+            
+            URLSession.shared.dataTask(with: request) { (data, response, error) in
+                DispatchQueue.main.async {
+                    
+                    if let error = error {
+                        errors(error.localizedDescription)
+                        return
+                    }
+                    
+                    guard let data = data else {
+                        errors(error?.localizedDescription ?? "Failed to fetch courses")
+                        return
+                    }
+                    
+                    self.printOutResponse(data: data, response: response)
+                    
+                    do {
+                        let decodedData = try JSONDecoder().decode(T.self, from: data)
+                        completion(decodedData)
+                    } catch {
+                        errors("Error decoding data: \(error)")
+                    }
+                    
                 }
-                
-                guard let data = data else {
-                    errors(error?.localizedDescription ?? "Failed to fetch courses")
-                    return
-                }
-                
-                self.printOutResponse(data: data, response: response)
-                
-                do {
-                    let decodedData = try JSONDecoder().decode(T.self, from: data)
-                    completion(decodedData)
-                } catch {
-                    errors("Error decoding data: \(error)")
-                }
-                
-            }
-        }.resume()
+            }.resume()
+        }
     }
     
     // MARK: Print Response from API

@@ -10,7 +10,7 @@ import SwiftUI
 struct MovieSearchView: View {
     
     @ObservedObject var movieSearchVM = MovieSearchVM()
-        
+            
     var body: some View {
         NavigationStack {
             List {
