@@ -13,20 +13,42 @@ struct ActivityIndicatorContainer: View {
     let retryTrigger: (()->())?
     
     var body: some View {
-            if isLoading{
-                HStack() {
-                    Spacer()
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle(tint: .red))
-                        .scaleEffect(2.5)
-                    Spacer()
+        if isLoading{
+            CustomActivityIndicator()
+                .frame(maxWidth: .infinity)
+        }else if let error = error{
+            HStack{
+                Spacer()
+                ErrorContainerView(error: error, retryTrigger: retryTrigger)
+                Spacer()
+            }
+        }
+    }
+}
+
+struct CustomActivityIndicator: View {
+    
+    @State private var isAnimating = false
+    
+    var body: some View {
+        Image(systemName: "arrow.2.circlepath")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 40, height: 40)
+            .foregroundColor(.red)
+            .rotationEffect(Angle(degrees: isAnimating ? 360 : 0))
+            .onAppear {
+                if !isAnimating {
+                    let animation: Animation  =
+                    Animation.linear(duration: 0.1)
+                        .repeatForever(autoreverses: false)
+                    withAnimation(animation) {
+                        isAnimating = true
+                    }
                 }
-            }else if error != nil {//else if let error = error{
-                HStack{
-                    Spacer()
-                    ErrorContainerView(error: error!, retryTrigger: retryTrigger)
-                    Spacer()
-                }
+            }
+            .onDisappear {
+                isAnimating = false
             }
     }
 }
@@ -35,3 +57,4 @@ struct ActivityIndicatorContainer: View {
 #Preview {
     ActivityIndicatorContainer(isLoading: true, error: nil, retryTrigger: nil)
 }
+
