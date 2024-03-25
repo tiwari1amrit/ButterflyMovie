@@ -11,9 +11,22 @@ import SwiftUI
 struct ButterflyMovieApp: App {
 //    let persistenceController = PersistenceController.shared
 
+    
     var body: some Scene {
         WindowGroup {
-            MovieSearchView()
+            
+            TabView() {
+                MovieSearchView()
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "magnifyingglass")
+                            Text("Search")
+                        }
+                }
+                .tag(0)
+            }
+            .accentColor(.red)
+            
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
