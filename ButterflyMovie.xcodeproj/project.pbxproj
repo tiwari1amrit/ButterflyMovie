@@ -23,6 +23,7 @@
 		661A587B2BB16FF400272C6B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 661A587A2BB16FF400272C6B /* Kingfisher */; };
 		661A58802BB1713200272C6B /* ActivityIndicatorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661A587D2BB1713200272C6B /* ActivityIndicatorContainer.swift */; };
 		661A58832BB1715F00272C6B /* ErrorContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661A58822BB1715F00272C6B /* ErrorContainerView.swift */; };
+		661A58872BB171D300272C6B /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661A58852BB171D300272C6B /* WebImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		661A58772BB16F9600272C6B /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		661A587D2BB1713200272C6B /* ActivityIndicatorContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorContainer.swift; sourceTree = "<group>"; };
 		661A58822BB1715F00272C6B /* ErrorContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorContainerView.swift; sourceTree = "<group>"; };
+		661A58852BB171D300272C6B /* WebImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 		661A586B2BB16AAC00272C6B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				661A58852BB171D300272C6B /* WebImageView.swift */,
 				661A587D2BB1713200272C6B /* ActivityIndicatorContainer.swift */,
 				661A58822BB1715F00272C6B /* ErrorContainerView.swift */,
 			);
@@ -340,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				661A583C2BB169D800272C6B /* ButterflyMovieApp.swift in Sources */,
+				661A58872BB171D300272C6B /* WebImageView.swift in Sources */,
 				661A58832BB1715F00272C6B /* ErrorContainerView.swift in Sources */,
 				661A58412BB169D800272C6B /* ButterflyMovie.xcdatamodeld in Sources */,
 				661A58802BB1713200272C6B /* ActivityIndicatorContainer.swift in Sources */,
