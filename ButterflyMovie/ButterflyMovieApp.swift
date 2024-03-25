@@ -13,7 +13,7 @@ struct ButterflyMovieApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MovieSearchView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
