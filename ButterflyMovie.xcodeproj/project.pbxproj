@@ -10,6 +10,8 @@
 		6610092A2BB23BC1007AEAD6 /* MovieDetailDB+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661009282BB23BC1007AEAD6 /* MovieDetailDB+CoreDataClass.swift */; };
 		6610092B2BB23BC1007AEAD6 /* MovieDetailDB+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661009292BB23BC1007AEAD6 /* MovieDetailDB+CoreDataProperties.swift */; };
 		6610092E2BB257BF007AEAD6 /* ViewDidLoadModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6610092D2BB257BF007AEAD6 /* ViewDidLoadModifier.swift */; };
+		661009352BB26655007AEAD6 /* MovieList.json in Resources */ = {isa = PBXBuildFile; fileRef = 661009342BB26655007AEAD6 /* MovieList.json */; };
+		661009372BB26C91007AEAD6 /* MovieSearchVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661009362BB26C91007AEAD6 /* MovieSearchVMTests.swift */; };
 		661A583C2BB169D800272C6B /* ButterflyMovieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661A583B2BB169D800272C6B /* ButterflyMovieApp.swift */; };
 		661A583E2BB169D800272C6B /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661A583D2BB169D800272C6B /* PersistenceController.swift */; };
 		661A58412BB169D800272C6B /* ButterflyMovie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 661A583F2BB169D800272C6B /* ButterflyMovie.xcdatamodeld */; };
@@ -58,6 +60,8 @@
 		661009282BB23BC1007AEAD6 /* MovieDetailDB+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDetailDB+CoreDataClass.swift"; sourceTree = "<group>"; };
 		661009292BB23BC1007AEAD6 /* MovieDetailDB+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDetailDB+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6610092D2BB257BF007AEAD6 /* ViewDidLoadModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDidLoadModifier.swift; sourceTree = "<group>"; };
+		661009342BB26655007AEAD6 /* MovieList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MovieList.json; sourceTree = "<group>"; };
+		661009362BB26C91007AEAD6 /* MovieSearchVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchVMTests.swift; sourceTree = "<group>"; };
 		661A58382BB169D800272C6B /* ButterflyMovie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ButterflyMovie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		661A583B2BB169D800272C6B /* ButterflyMovieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButterflyMovieApp.swift; sourceTree = "<group>"; };
 		661A583D2BB169D800272C6B /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
@@ -122,6 +126,14 @@
 			path = Modifier;
 			sourceTree = "<group>";
 		};
+		6610092F2BB2657E007AEAD6 /* JsonFile */ = {
+			isa = PBXGroup;
+			children = (
+				661009342BB26655007AEAD6 /* MovieList.json */,
+			);
+			path = JsonFile;
+			sourceTree = "<group>";
+		};
 		661A582F2BB169D800272C6B = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +157,7 @@
 		661A583A2BB169D800272C6B /* ButterflyMovie */ = {
 			isa = PBXGroup;
 			children = (
+				6610092F2BB2657E007AEAD6 /* JsonFile */,
 				661A586C2BB16AB000272C6B /* Model */,
 				661A586B2BB16AAC00272C6B /* View */,
 				661A586D2BB16AB800272C6B /* ViewModel */,
@@ -172,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				661A58522BB169D800272C6B /* ButterflyMovieTests.swift */,
+				661009362BB26C91007AEAD6 /* MovieSearchVMTests.swift */,
 			);
 			path = ButterflyMovieTests;
 			sourceTree = "<group>";
@@ -357,6 +371,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				661009352BB26655007AEAD6 /* MovieList.json in Resources */,
 				661A58492BB169D800272C6B /* Preview Assets.xcassets in Resources */,
 				661A58452BB169D800272C6B /* Assets.xcassets in Resources */,
 			);
@@ -413,6 +428,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				661A58532BB169D800272C6B /* ButterflyMovieTests.swift in Sources */,
+				661009372BB26C91007AEAD6 /* MovieSearchVMTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

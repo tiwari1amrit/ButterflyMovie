@@ -21,6 +21,7 @@ class MovieSearchVM: ObservableObject {
     private let networkManager = NetworkManager.shared
     
     let movieDataManager = MovieDataManager()
+    var fetchMovieSuccess: (([MovieDetail]?)->())?
     
     func startObserve() {
 
@@ -40,6 +41,8 @@ class MovieSearchVM: ObservableObject {
     
     func getMovieList(onlyFavorite favorite: Bool){
         self.movies = movieDataManager.fetchMoviesFromCoreData(withFavorite: favorite)
+        
+        fetchMovieSuccess?(self.movies)
     }
     
     func toggleFavorite(withId id : Int){
