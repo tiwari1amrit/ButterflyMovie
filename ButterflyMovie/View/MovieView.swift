@@ -11,7 +11,7 @@ struct MovieView: View {
     let movieDetail: MovieDetail
     let movieSearchVM: MovieSearchVM
     let onlyFavorite: Bool
-
+    
     var body: some View {
         NavigationLink(destination: MovieDetailView(movieDetail: movieDetail)) {
             HStack(alignment: .top){
@@ -34,29 +34,52 @@ struct MovieView: View {
                 Spacer()
             }
             .overlay(alignment: .topTrailing) {
-                Button {
-                    movieSearchVM.toggleFavorite(withId: movieDetail.id)
-                    movieSearchVM.getMovieList(onlyFavorite: onlyFavorite)
-                } label: {
-                    if movieDetail.isFavorite {
-                        Image(systemName: "star.fill")
-                            .font(.title3)
-                            .symbolVariant(.fill)
-                            .foregroundColor(.yellow)
-                    } else {
-                        Image(systemName: "star")
-                            .font(.title3)
-                            .symbolVariant(.fill)
-                            .foregroundColor(.gray.opacity(0.4))
-                    }
-                }
-                .buttonStyle(BorderlessButtonStyle())
-                .frame(width: 50,height: 50)
+                
+                FavoriteButton(
+                    movieDetail: movieDetail,
+                    movieSearchVM: movieSearchVM,
+                    onlyFavorite: onlyFavorite)
+                .padding(EdgeInsets(top: -10, leading: 0, bottom: 0, trailing: -40))
             }
         }
     }
 }
 
+struct FavoriteButton: View{
+    let movieDetail: MovieDetail
+    let movieSearchVM: MovieSearchVM
+    let onlyFavorite: Bool
+    
+    var body: some View{
+        Button {
+            movieSearchVM.toggleFavorite(withId: movieDetail.id)
+            movieSearchVM.getMovieList(onlyFavorite: onlyFavorite)
+        } label: {
+            if movieDetail.isFavorite {
+                Image(systemName: "star.fill")
+                    .modifier(StarModifier(fillColor: .red))
+            } else {
+                Image(systemName: "star")
+                    .modifier(
+                        StarModifier(
+                            fillColor: .gray.opacity(0.4)))
+            }
+        }
+        .buttonStyle(BorderlessButtonStyle())
+        .frame(width: 50,height: 50)
+    }
+}
+
+struct StarModifier: ViewModifier {
+    let fillColor : Color
+    func body(content: Content) -> some View {
+        content
+            .font(.title3)
+            .symbolVariant(.fill)
+            .foregroundColor(fillColor)
+        
+    }
+}
 
 #Preview {
     MovieView(
