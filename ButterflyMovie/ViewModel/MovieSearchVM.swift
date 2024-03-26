@@ -23,7 +23,7 @@ class MovieSearchVM: ObservableObject {
     let movieDataManager = MovieDataManager()
     
     func startObserve() {
-        
+
         self.subscriptionToken = self.$query
             .map { [weak self] text in
                 guard let `self` = self else { return text }
@@ -65,10 +65,11 @@ class MovieSearchVM: ObservableObject {
         networkManager.fetchData(Urls.searchMovie(), withParameter: params) { [weak self] (response: Movie) in
             guard let `self` = self else { return }
             self.isLoading = false
-            self.movies = nil
-            self.movies = response.results
+//            self.movies = nil
+//            self.movies = response.results
             movieDataManager.deletePreviousAndSaveData(response.results)
-            
+            self.getMovieList(onlyFavorite: false)
+
         } withCompletionWithError: {[weak self] error in
             guard let `self` = self else { return }
             self.isLoading = false

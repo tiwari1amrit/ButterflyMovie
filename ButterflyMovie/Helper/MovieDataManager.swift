@@ -10,27 +10,28 @@ import CoreData
 
 struct MovieDataManager {
     
-     func deletePreviousAndSaveData(_ movies: [MovieDetail]) {
+    func deletePreviousAndSaveData(_ movies: [MovieDetail]) {
+        // check the favorite movies first
         self.deleteNonFavoriteMovies {
             saveMoviesToCoreData(movies)
         }
     }
     
     // MARK: Save in core data for offline use
-     private func saveMoviesToCoreData(_ movies: [MovieDetail]) {
+    private func saveMoviesToCoreData(_ movies: [MovieDetail]) {
         for movie in movies {
             saveMovieDetail(movie)
         }
     }
     
-     private func saveMovieDetail(_ movie: MovieDetail) {
+    private func saveMovieDetail(_ movie: MovieDetail) {
         let viewContext = PersistenceController.shared.viewContext
         
         if let existingMovie = fetchMovieFromCoreData(withID: movie.id) {
-            // Movie already exists in the database, update its values
-            existingMovie.isFavorite = movie.isFavorite
+            // Update the value if it exists
+            existingMovie.isFavorite = true
         } else {
-            // Movie doesn't exist in the database, save it as a new movie
+            // if not exist in the database, save it as a new movie
             let movieEntity = MovieDetailDB(context: viewContext)
             configureMovieEntity(movieEntity, with: movie)
         }
@@ -42,11 +43,12 @@ struct MovieDataManager {
         }
     }
     
-     func toggleFavoriteStatus(for movieID: Int) {
+    //MARK: Toggle favorite status
+    func toggleFavoriteStatus(for movieID: Int) {
         let viewContext = PersistenceController.shared.viewContext
         
         if let movie = fetchMovieFromCoreData(withID: movieID) {
-            movie.isFavorite.toggle() // Toggle favorite status
+            movie.isFavorite.toggle()
             do {
                 try viewContext.save()
             } catch {
@@ -55,7 +57,7 @@ struct MovieDataManager {
         }
     }
     
-     func deleteNonFavoriteMovies(completion: @escaping () -> Void) {
+    func deleteNonFavoriteMovies(completion: @escaping () -> Void) {
         let viewContext = PersistenceController.shared.viewContext
         
         let fetchRequest: NSFetchRequest<MovieDetailDB> = MovieDetailDB.fetchRequest()
@@ -74,7 +76,7 @@ struct MovieDataManager {
         }
     }
     
-     func fetchMovieFromCoreData(withID id: Int) -> MovieDetailDB? {
+    func fetchMovieFromCoreData(withID id: Int) -> MovieDetailDB? {
         let viewContext = PersistenceController.shared.viewContext
         
         let fetchRequest: NSFetchRequest<MovieDetailDB> = MovieDetailDB.fetchRequest()
@@ -89,7 +91,8 @@ struct MovieDataManager {
         }
     }
     
-     func fetchMoviesFromCoreData(withFavorite favorite : Bool) -> [MovieDetail]? {
+    func fetchMoviesFromCoreData(withFavorite favorite : Bool) -> [MovieDetail]? {
+        
         let viewContext = PersistenceController.shared.viewContext
         
         let fetchRequest: NSFetchRequest<MovieDetailDB> = MovieDetailDB.fetchRequest()
@@ -123,7 +126,7 @@ struct MovieDataManager {
     }
     
     
-     private func configureMovieEntity(_ movieEntity: MovieDetailDB, with movie: MovieDetail) {
+    private func configureMovieEntity(_ movieEntity: MovieDetailDB, with movie: MovieDetail) {
         movieEntity.id = Int32(movie.id)
         movieEntity.title = movie.title
         movieEntity.overview = movie.overview
