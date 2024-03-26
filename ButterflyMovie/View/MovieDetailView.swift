@@ -37,7 +37,7 @@ struct MovieDetailView: View {
 
 #Preview {
     NavigationStack{
-        MovieDetailView(movieDetail: MovieDetail(id: 1, title: "Hello", overview: ""))
+        MovieDetailView(movieDetail: MovieDetail(id: 1, title: "Hello", overview: "", isFavorite: false))
     }
 }
 

@@ -2,7 +2,7 @@
 //  MovieDetailDB+CoreDataProperties.swift
 //  ButterflyMovie
 //
-//  Created by Amrit Tiwari on 25/3/2024.
+//  Created by Amrit Tiwari on 26/3/2024.
 //
 //
 
@@ -16,20 +16,16 @@ extension MovieDetailDB {
         return NSFetchRequest<MovieDetailDB>(entityName: "MovieDetailDB")
     }
 
-    @NSManaged public var id: Int32
-    @NSManaged public var title: String?
-    @NSManaged public var overview: String?
-    @NSManaged public var voteCount: Int32
-    @NSManaged public var popularity: Double
-    @NSManaged public var releaseDate: String?
     @NSManaged public var backdropPath: String?
-    @NSManaged public var posterPath: String?
+    @NSManaged public var id: Int32
     @NSManaged public var isFavorite: Bool
+    @NSManaged public var overview: String?
+    @NSManaged public var popularity: NSNumber?
+    @NSManaged public var posterPath: String?
+    @NSManaged public var releaseDate: String?
+    @NSManaged public var title: String?
+    @NSManaged public var voteCount: NSNumber?
 
-    public override func awakeFromInsert() {
-        super.awakeFromInsert()
-        setPrimitiveValue(false, forKey: "isFavorite")
-    }
 }
 
 extension MovieDetailDB : Identifiable {

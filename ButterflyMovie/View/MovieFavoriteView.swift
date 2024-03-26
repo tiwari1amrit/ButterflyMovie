@@ -9,35 +9,58 @@ import SwiftUI
 
 struct MovieFavoriteView: View {
     
-    @ObservedObject var movieSearchState = MovieSearchVM()
+    @ObservedObject var movieSearchVM = MovieSearchVM()
     @Binding var tabSelection: Int
     
     var body: some View {
         
-        if let movies = movieSearchState.movies{
-            ForEach(movies) { movie in
-                MovieView(movieDetail: movie)
-            }
-        }  else{
-            VStack{
-                Text("Please mark the view for favorite")
-                    .font(.title2)
-                    .padding()
-                Button(action: {
-                    self.tabSelection = 0
-                }, label: {
-                    Text("Go to search page")
+        NavigationView {
+            
+            if let movies = movieSearchVM.movies, movies.count > 0{
+                List{
+                    ForEach(movies) { movie in
+                        MovieView(movieDetail: movie, movieSearchVM: movieSearchVM, onlyFavorite: true)
+                    }
+                }
+            }  else{
+                VStack{
+                    Text("Please mark the view for favorite")
                         .font(.title2)
-                })
-                .buttonStyle(.borderedProminent)
-                .buttonBorderShape(.capsule)
-                .controlSize(.regular)
-                .tint(.red)
+                        .modifier(CenterModifier())
+                    
+                    Button(action: {
+                        self.tabSelection = 0
+                    }, label: {
+                        Text(" Go to search page ")
+                            .font(.title2)
+                    })
+                    .modifier(CenterModifier())
+                    .buttonStyle(.borderedProminent)
+                    .buttonBorderShape(.capsule)
+                    .controlSize(.regular)
+                    .tint(.red)
+                }
             }
+        }
+        .onAppear{
+            movieSearchVM.getMovieList(onlyFavorite: true)
         }
     }
 }
 
 #Preview {
-    MovieFavoriteView(tabSelection: .constant(1))
+    NavigationStack{
+        MovieFavoriteView(tabSelection: .constant(1))
+    }
+}
+
+
+struct CenterModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        HStack {
+            Spacer()
+            content
+            Spacer()
+        }
+    }
 }

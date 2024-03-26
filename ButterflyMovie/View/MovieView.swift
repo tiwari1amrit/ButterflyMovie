@@ -9,6 +9,9 @@ import SwiftUI
 
 struct MovieView: View {
     let movieDetail: MovieDetail
+    let movieSearchVM: MovieSearchVM
+    let onlyFavorite: Bool
+
     var body: some View {
         NavigationLink(destination: MovieDetailView(movieDetail: movieDetail)) {
             HStack(alignment: .top){
@@ -32,13 +35,23 @@ struct MovieView: View {
             }
             .overlay(alignment: .topTrailing) {
                 Button {
-                    
+                    movieSearchVM.toggleFavorite(withId: movieDetail.id)
+                    movieSearchVM.getMovieList(onlyFavorite: onlyFavorite)
                 } label: {
-                    Image(systemName: "star")
-                        .font(.title3)
-                        .symbolVariant(.fill)
-                        .foregroundColor(.gray.opacity(0.4))
+                    if movieDetail.isFavorite {
+                        Image(systemName: "star.fill")
+                            .font(.title3)
+                            .symbolVariant(.fill)
+                            .foregroundColor(.yellow)
+                    } else {
+                        Image(systemName: "star")
+                            .font(.title3)
+                            .symbolVariant(.fill)
+                            .foregroundColor(.gray.opacity(0.4))
+                    }
                 }
+                .buttonStyle(BorderlessButtonStyle())
+                .frame(width: 50,height: 50)
             }
         }
     }
@@ -46,5 +59,9 @@ struct MovieView: View {
 
 
 #Preview {
-    MovieView(movieDetail: MovieDetail(id: 10, title: "hello ewewe ewewe ", overview: ""))
+    MovieView(
+        movieDetail: MovieDetail(
+            id: 10, title: "hello ewewe ewewe ",
+            overview: "", isFavorite: false),
+        movieSearchVM: .init(), onlyFavorite: false)
 }

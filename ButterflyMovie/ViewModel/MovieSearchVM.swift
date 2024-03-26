@@ -20,13 +20,14 @@ class MovieSearchVM: ObservableObject {
     private var subscriptionToken: AnyCancellable?
     private let networkManager = NetworkManager.shared
     
+    let movieDataManager = MovieDataManager()
+    
     func startObserve() {
-        guard subscriptionToken == nil else { return }
         
         self.subscriptionToken = self.$query
             .map { [weak self] text in
                 guard let `self` = self else { return text }
-                self.movies = MovieDataManager.fetchMoviesFromCoreData()
+                self.getMovieList(onlyFavorite: false)
                 self.error = nil
                 return text
                 
@@ -35,6 +36,14 @@ class MovieSearchVM: ObservableObject {
                 guard let `self` = self else { return }
                 self.search(query: $0)
             })
+    }
+    
+    func getMovieList(onlyFavorite favorite: Bool){
+        self.movies = movieDataManager.fetchMoviesFromCoreData(withFavorite: favorite)
+    }
+    
+    func toggleFavorite(withId id : Int){
+        movieDataManager.toggleFavoriteStatus(for: id)
     }
     
     func search(query: String){
@@ -58,7 +67,7 @@ class MovieSearchVM: ObservableObject {
             self.isLoading = false
             self.movies = nil
             self.movies = response.results
-            MovieDataManager.deletePreviousAndSaveData(response.results)
+            movieDataManager.deletePreviousAndSaveData(response.results)
             
         } withCompletionWithError: {[weak self] error in
             guard let `self` = self else { return }

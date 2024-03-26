@@ -24,15 +24,17 @@ struct MovieSearchView: View {
 
                 if let movies = movieSearchVM.movies{
                     ForEach(movies) { movie in
-                        MovieView(movieDetail: movie)
+                        MovieView(
+                            movieDetail: movie, movieSearchVM: movieSearchVM, onlyFavorite: false)
                     }
                 }                
             }
-            .onAppear{
-                movieSearchVM.startObserve()
-            }
             .navigationTitle("Search Movies")
         }
+        .onAppear{
+            movieSearchVM.startObserve()
+        }
+
     }
 }
 

@@ -27,8 +27,9 @@ struct MovieDetail: Codable, Identifiable {
     var releaseDate: String?
     var backdropPath: String?
     var posterPath: String?
+    var isFavorite: Bool = false
     
-    init(id: Int, title: String, overview: String, voteCount: Int? = nil, popularity: Double? = nil, releaseDate: String? = nil, backdropPath: String? = nil, posterPath: String? = nil) {
+    init(id: Int, title: String, overview: String, isFavorite: Bool, voteCount: Int? = nil, popularity: Double? = nil, releaseDate: String? = nil, backdropPath: String? = nil, posterPath: String? = nil) {
         self.id = id
         self.title = title
         self.overview = overview
@@ -37,6 +38,7 @@ struct MovieDetail: Codable, Identifiable {
         self.releaseDate = releaseDate
         self.backdropPath = backdropPath
         self.posterPath = posterPath
+        self.isFavorite = isFavorite
     }
     
     enum CodingKeys: String, CodingKey {

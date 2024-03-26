@@ -8,59 +8,95 @@
 import Foundation
 import CoreData
 
-struct MovieDataManager{
+struct MovieDataManager {
     
-    static func deletePreviousAndSaveData(_ movies : [MovieDetail]){
-        self.deleteMovie {
+     func deletePreviousAndSaveData(_ movies: [MovieDetail]) {
+        self.deleteNonFavoriteMovies {
             saveMoviesToCoreData(movies)
         }
     }
     
-    //MARK: Save in core data for offline use
-    static private func saveMoviesToCoreData(_ movies : [MovieDetail]) {
-        
-        let context = PersistenceController.shared.viewContext
-        
+    // MARK: Save in core data for offline use
+     private func saveMoviesToCoreData(_ movies: [MovieDetail]) {
         for movie in movies {
-            let movieEntity = MovieDetailDB(context: context)
-            movieEntity.id = Int32(movie.id)
-            movieEntity.title = movie.title
-            movieEntity.overview = movie.overview
-            movieEntity.voteCount = Int32(movie.voteCount ?? 0)
-            movieEntity.popularity = movie.popularity ?? 0
-            movieEntity.releaseDate = movie.releaseDate
-            movieEntity.backdropPath = movie.backdropPath
-            movieEntity.posterPath = movie.posterPath
-            
+            saveMovieDetail(movie)
+        }
+    }
+    
+     private func saveMovieDetail(_ movie: MovieDetail) {
+        let viewContext = PersistenceController.shared.viewContext
+        
+        if let existingMovie = fetchMovieFromCoreData(withID: movie.id) {
+            // Movie already exists in the database, update its values
+            existingMovie.isFavorite = movie.isFavorite
+        } else {
+            // Movie doesn't exist in the database, save it as a new movie
+            let movieEntity = MovieDetailDB(context: viewContext)
+            configureMovieEntity(movieEntity, with: movie)
+        }
+        
+        do {
+            try viewContext.save()
+        } catch {
+            print("Failed to save movie to Core Data: \(error)")
+        }
+    }
+    
+     func toggleFavoriteStatus(for movieID: Int) {
+        let viewContext = PersistenceController.shared.viewContext
+        
+        if let movie = fetchMovieFromCoreData(withID: movieID) {
+            movie.isFavorite.toggle() // Toggle favorite status
             do {
-                try context.save()
+                try viewContext.save()
             } catch {
-                print("Failed to save movie to Core Data: \(error)")
+                print("Failed to toggle favorite status for movie \(movieID): \(error)")
             }
         }
     }
     
-    static func deleteMovie(completion: ()->()?) {
+     func deleteNonFavoriteMovies(completion: @escaping () -> Void) {
         let viewContext = PersistenceController.shared.viewContext
         
         let fetchRequest: NSFetchRequest<MovieDetailDB> = MovieDetailDB.fetchRequest()
         do {
             let movies = try viewContext.fetch(fetchRequest)
             for movie in movies {
-                viewContext.delete(movie)
+                if !movie.isFavorite {
+                    viewContext.delete(movie)
+                }
             }
             
             try! viewContext.save()
             completion()
-        }catch{
+        } catch {
             print("Error fetching movies from Core Data: \(error)")
         }
     }
     
-    static func fetchMoviesFromCoreData() -> [MovieDetail]?{
+     func fetchMovieFromCoreData(withID id: Int) -> MovieDetailDB? {
         let viewContext = PersistenceController.shared.viewContext
         
         let fetchRequest: NSFetchRequest<MovieDetailDB> = MovieDetailDB.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %d", id)
+        
+        do {
+            let movies = try viewContext.fetch(fetchRequest)
+            return movies.first
+        } catch {
+            print("Error fetching movie from Core Data: \(error)")
+            return nil
+        }
+    }
+    
+     func fetchMoviesFromCoreData(withFavorite favorite : Bool) -> [MovieDetail]? {
+        let viewContext = PersistenceController.shared.viewContext
+        
+        let fetchRequest: NSFetchRequest<MovieDetailDB> = MovieDetailDB.fetchRequest()
+        
+        if favorite{
+            fetchRequest.predicate = NSPredicate(format: "isFavorite == true")
+        }
         
         do {
             let movieEntities = try viewContext.fetch(fetchRequest)
@@ -71,8 +107,9 @@ struct MovieDataManager{
                     id: Int(movieEntity.id),
                     title: movieEntity.title ?? "",
                     overview: movieEntity.overview ?? "",
-                    voteCount : Int(movieEntity.voteCount),
-                    popularity : movieEntity.popularity,
+                    isFavorite: movieEntity.isFavorite,
+                    voteCount : movieEntity.voteCount as? Int,
+                    popularity : movieEntity.popularity as? Double,
                     releaseDate : movieEntity.releaseDate,
                     backdropPath : movieEntity.backdropPath,
                     posterPath : movieEntity.posterPath
@@ -83,5 +120,18 @@ struct MovieDataManager{
             print("Error fetching movies from Core Data: \(error)")
         }
         return nil
+    }
+    
+    
+     private func configureMovieEntity(_ movieEntity: MovieDetailDB, with movie: MovieDetail) {
+        movieEntity.id = Int32(movie.id)
+        movieEntity.title = movie.title
+        movieEntity.overview = movie.overview
+        movieEntity.isFavorite = movie.isFavorite
+        movieEntity.voteCount = movie.voteCount as NSNumber?
+        movieEntity.popularity = movie.popularity as NSNumber?
+        movieEntity.releaseDate = movie.releaseDate
+        movieEntity.backdropPath = movie.backdropPath
+        movieEntity.posterPath = movie.posterPath
     }
 }

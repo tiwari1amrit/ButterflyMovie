@@ -3,4 +3,52 @@
    uuid = "CABCFAF9-1CB5-4999-AE41-28270C8F0F2A"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "364CBFB3-AEE6-4D09-A712-636546FB560A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ButterflyMovie/ViewModel/MovieSearchVM.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "MovieSearchVM"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "364CBFB3-AEE6-4D09-A712-636546FB560A - 619c3974bbd815af"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ButterflyMovie.MovieSearchVM.deinit"
+                  moduleName = "ButterflyMovie"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Macintosh%20HD/ButterflyMovie/ButterflyMovie/ViewModel/MovieSearchVM.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84">
+               </Location>
+               <Location
+                  uuid = "364CBFB3-AEE6-4D09-A712-636546FB560A - 17c2d8998da41534"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ButterflyMovie.MovieSearchVM.__deallocating_deinit"
+                  moduleName = "ButterflyMovie"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Macintosh%20HD/ButterflyMovie/ButterflyMovie/ViewModel/MovieSearchVM.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
