@@ -4,10 +4,33 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ButterflyMovie(dev).xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>ButterflyMovie.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>66EF9AD92BB2B5CB008BBABF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>66EF9AEF2BB2B5CC008BBABF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>66EF9AF92BB2B5CC008BBABF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

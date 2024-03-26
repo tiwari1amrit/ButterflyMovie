@@ -10,15 +10,15 @@ import Foundation
 public struct Urls {
     
     static let baseUrl: String = {
-        return "https://api.themoviedb.org/3"
+        return ButterflyEnvironment.baseUrl
     }()
     
     static private let baseImageUrl: String = {
-        return "https://image.tmdb.org/t/p/w500"
+        return ButterflyEnvironment.baseImageUrl
     }()
     
     // MARK: Movie
-    static let apiKey = "955ce287e75605eac84af261618f20a6"
+    static let apiKey = ButterflyEnvironment.apiKey
     
     static func searchMovie() -> URL{
         

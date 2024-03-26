@@ -1,0 +1,5 @@
+
+# I inject env variables in the Config file, so just hiding ButterflyConfig file from public
+*ButterflyConfig
+
+
