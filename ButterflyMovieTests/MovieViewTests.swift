@@ -13,12 +13,12 @@ final class MovieViewTests: XCTestCase {
     
     var movieView: MovieView!
     var movieSearchVM: MovieSearchVM!
-
+    
     override func setUpWithError() throws {
         try? super.setUpWithError()
         
         movieSearchVM = MovieSearchVM()
-
+        
         movieView = MovieView(
             movieDetail: MovieDetail(
                 id: 10, title: "Hello this is dhoom 3",
@@ -49,10 +49,9 @@ final class MovieViewTests: XCTestCase {
         movieSearchVM.fetchMovieSuccess = { movies in
             let movie = movies?.filter{ $0.isFavorite == initialFavoriteStatus}
             XCTAssertNotEqual(initialFavoriteStatus, movie?.first?.isFavorite)
-
+            
         }
     }
-    
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         self.measure {
